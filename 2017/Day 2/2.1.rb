@@ -6,7 +6,6 @@ File.open("input.txt").each_line do |line|
   	s[:max] = e if e > s[:max]
   	s
   end
-  p diff
   sum += diff[:max] - diff[:min]
 end
 
