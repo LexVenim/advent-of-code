@@ -1,20 +1,16 @@
 banks = IO.read("input.txt").split(" ").map {|b| b.to_i}
 
-cycle = 0
 history = {}
-history[banks.dup] = cycle
+history[banks.dup] = 1
 
-while (true) do
-	cycle += 1
+cycle = 1.step do |c|
 	mi = banks.index(banks.max)
 
 	blocks, banks[mi] = banks[mi], 0
 	blocks.times { |i| banks[(mi + i + 1) % banks.length] += 1}
 
-	p cycle.to_s + ": " + banks.to_s
-
-	break if history[banks]
-	history[banks.dup] = cycle
+	break c if history[banks]
+	history[banks.dup] = c
 end
 
 p cycle - history[banks]
