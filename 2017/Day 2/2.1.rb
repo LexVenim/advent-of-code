@@ -1,14 +1,3 @@
-sum = 0
-
-File.open("input.txt").each_line do |line|
-  diff = line.split(" ").map{ |e| e.to_i }.reduce({min: 10000, max: 0}) do |s,e|
-  	s[:min] = e if e < s[:min]
-  	s[:max] = e if e > s[:max]
-  	s
-  end
-  sum += diff[:max] - diff[:min]
-end
-
-p sum
+p File.open("input.txt", "r").readlines.map{|line| line.split(" ").map{ |e| e.to_i }.minmax}.inject(0) { |sum, a| sum += a[1] - a[0]}
 
 # sum = 37923
