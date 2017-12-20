@@ -1,12 +1,3 @@
-count = 0
-
-File.open("input.txt").each_line do |line|
-  passphrase = line.split(" ")
-  splitted_passphrase = passphrase.map {|f| f.split("").sort }
-
-  count += 1 if (passphrase.uniq.length == passphrase.length && splitted_passphrase.uniq.length == splitted_passphrase.length)
-end
-
-p count
+p File.open("input.txt", "r").readlines.map{|l| l.split(" ").map{|w| w.chars.sort.join} }.inject(0){|sum, l| sum += 1 if l.uniq.length == l.length; sum}
 
 # count = 119

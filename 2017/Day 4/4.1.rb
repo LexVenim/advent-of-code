@@ -1,10 +1,3 @@
-count = 0
-
-File.open("input.txt").each_line do |line|
-  passphrase = line.split(" ")
-  count += 1 if passphrase.uniq.length == passphrase.length
-end
-
-p count
+p File.open("input.txt", "r").readlines.map{|l| l.split(" ")}.inject(0){|sum, l| sum += 1 if l.uniq.length == l.length; sum}
 
 # count = 325
